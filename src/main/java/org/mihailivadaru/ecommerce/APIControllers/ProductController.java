@@ -2,7 +2,6 @@ package org.mihailivadaru.ecommerce.APIControllers;
 
 import org.mihailivadaru.ecommerce.DTO.ProductDTO;
 import org.mihailivadaru.ecommerce.models.Category;
-import org.mihailivadaru.ecommerce.models.Product;
 import org.mihailivadaru.ecommerce.services.CategoryService;
 import org.mihailivadaru.ecommerce.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +29,7 @@ public class ProductController {
             return new ResponseEntity<>(new ApiResponse(false, "Category is invalid"), HttpStatus.CONFLICT);
         }
         Category category = optionalCategory.get();
-        productService.addProduct(productDTO, category);
+        productService.addProduct(productDTO, category.getId());
         return new ResponseEntity<>(new ApiResponse(true, "Product has been added"), HttpStatus.CREATED);
     }
-
-
 }
